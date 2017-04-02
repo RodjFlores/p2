@@ -32,6 +32,10 @@ function animate() {
 
 /************* DO NOT TOUCH CODE ABOVE THIS LINE ***************/
 
+
+
+
+
 function swapPhoto() {
 	//Add code here to access the #slideShow element.
 	//Access the img element and replace its source
@@ -47,8 +51,7 @@ var mCurrentIndex = 0;
 
 var mRequest = new XMLHttpRequest();
 
-mRequest.open("GET","images.json",true);
-mRequest.send();
+
 
 // Array holding GalleryImage objects (see below).
 var mImages = [];
@@ -60,7 +63,9 @@ var mJson;
 // Some options for you are: images.json, images.short.json; you will need to create your own extra.json later
 var mUrl = "images.json";
 
-console.log("HELLO WORLDwefwefwefwefwef");
+mRequest.open("GET","images.json",true);
+mRequest.send();
+console.log("ewfwfwefwef");
 
 
 
@@ -98,3 +103,12 @@ function GalleryImage(location,description,date,URL) {
 	this.date=date;
 	this.URL=URL;
 }
+
+window.console = {
+  log: function(str){
+    var node = document.createElement("div");
+    node.appendChild(document.createTextNode(str));
+    document.getElementById("myLog").appendChild(node);
+  }
+}
+console.log('hergergergi');
