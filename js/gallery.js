@@ -42,6 +42,15 @@ function swapPhoto() {
 	//with a new image from your images array which is loaded 
 	//from the JSON string
 	console.log('swap photo');
+	var x = 0
+
+	$('#photo').attr("src",mImages[x].imgPath);
+	if(x>mImages.length-1){
+		x=0
+	}
+	else{
+		x++;
+	}
 }
 
 // Counter for the mImages array
@@ -62,10 +71,29 @@ var mJson;
 // URL for the JSON to load by default
 // Some options for you are: images.json, images.short.json; you will need to create your own extra.json later
 var mUrl = "images.json";
+mRequest.onreadystatechange = function(){
+	if(this.readyState == 4 && this.status == 200){
+		try{
+			mJson = JSON.parse(mRequest.responseText);
+			console.log(mJson);
+			for( var i = 0; i<mJson.images.length; i++){
+				var myLine = mJson.images[i];
 
-mRequest.open("GET","images.json",true);
+				mImages.push(new GalleryImage(myLine.imgLocation,
+				myLine.description,myLine.date,myLine.imgPath));
+			}
+			console.log(mImages);
+		}
+		catch(e){
+			console.log(e.message)
+		}
+	}
+}
+
+
+mRequest.open("GET",mUrl,true);
 mRequest.send();
-console.log("ewfwfwefwef");
+console.log("FUCK!");
 
 
 
@@ -83,6 +111,13 @@ $(document).ready( function() {
 	
 	// This initially hides the photos' metadata information
 	$('.details').eq(0).hide();
+
+	$('.moreIndicator').click(function(){
+		$('.details').eq(0).toggle();
+
+		$(this).removeClass("rot90");
+		$(this).addClass("rot270");
+	});
 	
 });
 
@@ -92,7 +127,7 @@ window.addEventListener('load', function() {
 
 }, false);
 
-function GalleryImage(location,description,date,URL) {
+function GalleryImage(location,description,date,imgPath) {
 	//implement me as an object to hold the following data about an image:
 	//1. location where photo was taken
 	//2. description of photo
@@ -101,14 +136,6 @@ function GalleryImage(location,description,date,URL) {
 	this.location=location;
 	this.description=description;
 	this.date=date;
-	this.URL=URL;
+	this.imgPath=imgPath;
 }
 
-window.console = {
-  log: function(str){
-    var node = document.createElement("div");
-    node.appendChild(document.createTextNode(str));
-    document.getElementById("myLog").appendChild(node);
-  }
-}
-console.log('hergergergi');
