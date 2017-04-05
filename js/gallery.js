@@ -32,24 +32,45 @@ function animate() {
 
 /************* DO NOT TOUCH CODE ABOVE THIS LINE ***************/
 
+function getQueryParams(qs) {
+	qs = qs.split("+").join(" ");
+	var params = {},
+ 		tokens,
+ 		re = /[?&]?([^=]+)=([^&]*)/g;
+	while (tokens = re.exec(qs)) {
+		params[decodeURIComponent(tokens[1])]
+ 			= decodeURIComponent(tokens[2]);
+ 	}
+ 	return params;
+}
+
+var $_GET = getQueryParams(document.location.search);
+console.log($_GET["extra.json"]); // would output "John"
+
+function getData(){
+	$('.location').text("Location: " + mImages[x].location);
+	$('.description').text("Description: " + mImages[x].description);
+	$('.date').text("Date: " + mImages[x].date)
+	$('#photo').attr("src",mImages[x].imgPath);
+}
 
 
-
-
+var x = 0
 function swapPhoto() {
 	//Add code here to access the #slideShow element.
 	//Access the img element and replace its source
 	//with a new image from your images array which is loaded 
 	//from the JSON string
-	console.log('swap photo');
-	var x = 0
+	console.log(x);
+	
 
-	$('#photo').attr("src",mImages[x].imgPath);
-	if(x>mImages.length-1){
-		x=0
+	if(x>=mImages.length-1){
+		x=0;
+		getData();
 	}
 	else{
 		x++;
+		getData();
 	}
 }
 
@@ -81,9 +102,8 @@ mRequest.onreadystatechange = function(){
 
 				mImages.push(new GalleryImage(myLine.imgLocation,
 				myLine.description,myLine.date,myLine.imgPath));
+				}
 			}
-			console.log(mImages);
-		}
 		catch(e){
 			console.log(e.message)
 		}
@@ -93,7 +113,7 @@ mRequest.onreadystatechange = function(){
 
 mRequest.open("GET",mUrl,true);
 mRequest.send();
-console.log("FUCK!");
+
 
 
 
@@ -115,8 +135,38 @@ $(document).ready( function() {
 	$('.moreIndicator').click(function(){
 		$('.details').eq(0).toggle();
 
-		$(this).removeClass("rot90");
-		$(this).addClass("rot270");
+		$(this).toggleClass("rot270");
+	});
+
+	$('#nextPhoto').click(function(){
+		mLastFrameTime = new Date().getTime();
+
+		if(x>=mImages.length-1){
+			x=0;
+		}
+		else{
+			x++;
+		}
+		console.log("NEXT");
+		getData();
+
+
+	});
+
+	$('#prevPhoto').click(function(){
+		mLastFrameTime = new Date().getTime();
+
+		if(x==0){
+			x=12;
+		}
+		else{
+			x--;
+		}
+		console.log("PREV");
+		getData();
+
+
+
 	});
 	
 });
