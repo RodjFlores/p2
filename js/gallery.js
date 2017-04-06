@@ -31,6 +31,7 @@ function animate() {
 }
 
 /************* DO NOT TOUCH CODE ABOVE THIS LINE ***************/
+var mUrl;
 
 function getQueryParams(qs) {
 	qs = qs.split("+").join(" ");
@@ -45,7 +46,14 @@ function getQueryParams(qs) {
 }
 
 var $_GET = getQueryParams(document.location.search);
-console.log($_GET["extra.json"]); // would output "John"
+console.log($_GET["json"]); 
+
+if($_GET["json"]!= undefined){
+	mUrl=$_GET["json"];
+}// would output "John"
+else{
+	mUrl="images.json";
+}
 
 function getData(){
 	$('.location').text("Location: " + mImages[x].location);
@@ -91,7 +99,6 @@ var mJson;
 
 // URL for the JSON to load by default
 // Some options for you are: images.json, images.short.json; you will need to create your own extra.json later
-var mUrl = "images.json";
 mRequest.onreadystatechange = function(){
 	if(this.readyState == 4 && this.status == 200){
 		try{
@@ -157,7 +164,7 @@ $(document).ready( function() {
 		mLastFrameTime = new Date().getTime();
 
 		if(x==0){
-			x=12;
+			x=mImages.length-1;
 		}
 		else{
 			x--;

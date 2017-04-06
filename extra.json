@@ -2,33 +2,33 @@
     "images": [
         {
             "imgPath": "img/places/cthulhu.jpg",
-            "imgLocation": "Australia",
-            "description": "Loch Ard Gorge",
-            "date": "01/01/2016"
+            "imgLocation": "Sunken City",
+            "description": "High Priest of the Elder Gods",
+            "date": "-"
         },
         {
             "imgPath": "img/places/azathoth.jpg",
-            "imgLocation": "Austria",
-            "description": "Austrian chapel",
-            "date": "01/02/2016"
+            "imgLocation": "Self-Existing",
+            "description": "Creator, Ruler of Outer Gods",
+            "date": "-"
         },
         {
             "imgPath": "img/places/nyarlathotep.jpg",
-            "imgLocation": "Paris",
-            "description": "Eiffel Tower",
-            "date": "01/03/2016"
+            "imgLocation": "Walks the Earth",
+            "description": "Messenger of the Gods",
+            "date": "-"
         },
         {
             "imgPath": "img/places/shubniggurath.jpg",
-            "imgLocation": "Greece",
-            "description": "Greek coastline",
-            "date": "01/04/2016"
+            "imgLocation": "Dreamlands",
+            "description": "One of the Great Old Ones",
+            "date": "-"
         },
         {
             "imgPath": "img/places/hastur.jpg",
-            "imgLocation": "Hungary",
-            "description": "Budapest skyline",
-            "date": "01/05/2016"
+            "imgLocation": "is he? and person,place or thing??",
+            "description": "The Unspeakable One",
+            "date": "-"
         }        
   ]
 }
